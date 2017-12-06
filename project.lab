@@ -1,0 +1,46 @@
+
+ISO73 = "../Downloads/centos-gold-7.3.1611.iso"
+ISO74 = "../Downloads/centos-gold-7.4.1708.iso"
+
+
+laboratory "kubernetes" do |lab|
+  lab.domain = "foo.local"
+
+  lab.guest "kube1" do |g|
+    g.memory = 2048
+    g.boot   = [:dvd, :disk]
+
+    g.interface do |i|
+      i.hostonly(:vboxnet0)
+      i.ip4 = "10.0.30.121/24"
+    end
+
+    g.interface do |i| 
+      i.natnetwork(:cluster)
+      i.ip4 = "10.0.40.121/24"
+    end
+
+    g.dvd  {|d| d.medium = ISO73 }
+    g.disk {|d| d.size = 102400 }
+  end
+
+  lab.guest "kube2" do |g|
+    g.memory = 2048
+    g.boot   = [:dvd, :disk]
+
+    g.interface do |i|
+      i.hostonly(:vboxnet0)
+      i.ip4 = "10.0.30.122/24"
+    end
+
+    g.interface do |i| 
+      i.natnetwork(:cluster)
+      i.ip4 = "10.0.40.122/24"
+    end
+
+    g.dvd  {|d| d.medium = ISO73 }
+    g.disk {|d| d.size = 102400 }
+  end
+
+end
+
