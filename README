@@ -1,0 +1,13 @@
+
+Laboratory for Kubernetes
+-------------------------
+
+Prerequisites:
+
+* Laboratory   https://github.com/mcgarrigle/laboratory
+* centos-gold  https://github.com/mcgarrigle/centos-gold
+
+If you want to use the ssh.config add the ssh/scp functions definitions from:
+
+   https://github.com/mcgarrigle/bin/blob/master/vbx-aliases.sh
+
