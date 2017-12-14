@@ -7,6 +7,7 @@ laboratory "kubernetes" do |lab|
   lab.domain = "foo.local"
 
   lab.guest "kube1" do |g|
+    g.cores  = 2
     g.memory = 2048
     g.boot   = [:dvd, :disk]
 
@@ -25,6 +26,7 @@ laboratory "kubernetes" do |lab|
   end
 
   lab.guest "kube2" do |g|
+    g.cores  = 2
     g.memory = 2048
     g.boot   = [:dvd, :disk]
 
@@ -36,6 +38,25 @@ laboratory "kubernetes" do |lab|
     g.interface do |i| 
       i.natnetwork(:cluster)
       i.ip4 = "10.0.40.122/24"
+    end
+
+    g.dvd  {|d| d.medium = ISO73 }
+    g.disk {|d| d.size = 102400 }
+  end
+
+  lab.guest "kube3" do |g|
+    g.cores  = 2
+    g.memory = 2048
+    g.boot   = [:dvd, :disk]
+
+    g.interface do |i|
+      i.hostonly(:vboxnet0)
+      i.ip4 = "10.0.30.123/24"
+    end
+
+    g.interface do |i| 
+      i.natnetwork(:cluster)
+      i.ip4 = "10.0.40.123/24"
     end
 
     g.dvd  {|d| d.medium = ISO73 }
